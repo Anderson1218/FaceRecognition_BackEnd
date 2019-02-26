@@ -1,0 +1,26 @@
+{
+  "name": "facerecognitionserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anderson1218/FaceRecognition_BackEnd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anderson1218/FaceRecognition_BackEnd/issues"
+  },
+  "homepage": "https://github.com/Anderson1218/FaceRecognition_BackEnd#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
