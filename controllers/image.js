@@ -1,7 +1,7 @@
 const Clarifai = require('clarifai');
 
 const app = new Clarifai.App({
-    apiKey: '1a1e0c67d4c742d8828e220786100514'
+    apiKey: 'MY KEY'
    });
 
 const handleApiCall = (req, res) => {
@@ -11,15 +11,16 @@ const handleApiCall = (req, res) => {
       .catch(err => res.status(400).json('unable to work with API') );
 }
 
-const handleImage = (req, res, db) => {
-    const { id } = req.body;
-    db('users').where('id', '=', id)
-    .increment('entries', 1)
-    .returning('entries')
-    .then(entries => {
-        res.json(entries[0]);
-    })
-    .catch(err => res.status(400).json('unable to get entries'))
-}
+// const handleImage = (req, res, db) => {
+//     const { id } = req.body;
+//     db('users').where('id', '=', id)
+//     .increment('entries', 1)
+//     .returning('entries')
+//     .then(entries => {
+//         res.json(entries[0]);
+//     })
+//     .catch(err => res.status(400).json('unable to get entries'))
+// }
 
-module.exports = { handleImage, handleApiCall };
+//module.exports = { handleImage, handleApiCall };
+module.exports = { handleApiCall };
