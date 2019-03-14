@@ -22,9 +22,7 @@
     "clarifai": "^2.9.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "knex": "^0.16.3",
-    "mongoose": "^5.4.19",
-    "pg": "^7.8.1"
+    "mongoose": "^5.4.19"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
