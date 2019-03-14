@@ -1,40 +1,26 @@
 const User = require('../models/user');
 const Login = require('../models/login');
-const handleRegister = (req, res, db, bcrypt) => {
+const handleRegister = (req, res, bcrypt) => {
 
     const { email, name, password } = req.body;
     if (!email || !name || !password) {
         return res.status(400).json('incorrect form submission');
     }
     const hash = bcrypt.hashSync(password);
-    //insert hash and email to 'login' table
-    db.transaction(trx => {
-    trx.insert({
-        hash: hash,
-        email: email
+    let newUser = new User({name: name, email: email});
+    let newLogin = new Login({email: email, hash: hash});
+    User.insertMany([newUser])
+    .then(users => {
+        res.json(users[0]);
+        Login.insertMany([newLogin])
+        .then(logins => console.log(logins[0]))
+        .catch(err => console.log(err));
     })
-    .into('login')
-    .returning('email')
-    .then(loginEmail => {
-        return trx('users')
-        .returning('*')
-        .insert({
-            email: loginEmail[0],
-            name: name,
-            joined: new Date()
-        })
-        .then(user => {
-            res.json(user[0]);
-        })
-    })
-    .then(trx.commit)
-    .catch(trx.rollback)
-    })
-    .catch(err => res.status(400).json('unable to register'));
-    // let newLogin = new Login({email: email, hash: hash});
-    // let newUser = new User({name: name, email: email});
-
-
+    .catch(err => {
+        return res.status(400).json('unable to register');
+        console.log(err);
+    });
+    
 }
 
 module.exports = { handleRegister };

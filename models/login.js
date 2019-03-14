@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const LoginSchema = new Schema({
     email: {
         type: String,
-        required: [true, 'Email is required']
+        required: [true, 'Email is required'],
+        unique: true,
     },
     hash: {
         type: String,
