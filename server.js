@@ -8,6 +8,7 @@ const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const image = require('./controllers/image');
 
+require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -15,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 //global.Promise is ES6 implementation of promises inside Nodejs
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb+srv://admin-anderson:771218@cluster0-p4pkd.mongodb.net/face_recognition', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
